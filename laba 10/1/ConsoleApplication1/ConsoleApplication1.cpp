@@ -1,20 +1,26 @@
-﻿// ConsoleApplication1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+﻿//Среди натуральных чисел из промежутка от А до В найти число с наименьшим произведением цифр. Вывести на экран это число и произведение его цифр.
 #include <iostream>
-
+#include <locale.h>
 int main()
 {
-    std::cout << "Hello World!\n";
+	setlocale(LC_ALL, "RUSSIAN");
+	int A, B, Pr = 1, Y = INT_MAX, i;
+	do
+	{
+		printf("Введите число натуральное А: "); scanf_s("%i", &A);
+		printf("Введите число натуральное B: "); scanf_s("%i", &B);
+	} while (A <= 0 or B <= 0 or A>=B);
+	for (A; A < B; A++)
+	{
+		i = A;
+		while (i > 0)
+		{
+			Pr *= i % 10;
+			i /= 10;
+		}
+		if (Y > Pr) Y = Pr;
+		Pr = 1;
+	}
+	printf("Мнимальное произведение цифр: %i", Y);
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
